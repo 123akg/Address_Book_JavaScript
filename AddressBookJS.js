@@ -177,23 +177,39 @@ function getNoOfContacts(array){
     return count;
 }
 
+function searchContactInCity(city,name,array){
+    let contacts = array.filter(e=>e.city == city && e.firstName+" "+e.lastName==name).reduce((totalCount,e)=>totalCount+1,0);
+    if(contacts==0)
+    return false;
+    else
+    return true;
+}
+
 addContact("Abhi","Kumar","Raghopur Chaturang","Bihar","India",844508,9368832387,"abhi@Yahoo.com");
 addContact("Amit","Kumar","Raghopur Chaturang","Bihar","India",844508,9367832387,"amit@Yahoo.com");
 addContact("Sagar","Kumar","Raghopur Chaturang","Bihar","India",844508,9398432387,"sagar@Yahoo.com");
 addContact("Ani","Kumar","Raghopur Chaturang","Bihar","India",844508,9366762387,"ani@Yahoo.com");
 addContact("Rohit","Kumar","Raghopur Chaturang","Bihar","India",844508,9334432387,"rohit@Yahoo.com");
 
-editContact("Rohit","Kumar","Bidupur","Bihar","India",844508,9334432387,"rohit@Yahoo.com");
+
+editContact("Rohit","Kumar","Bidupur","Bihar","New York",844508,9334432387,"rohit@Yahoo.com");
 console.log(addressBook.toString());
 
-
-deleteContact("Rohit","Kumar");
+deleteContact("Shang","Chi");
 console.log(addressBook.toString());
 
 let noOfContacts = getNoOfContacts(addressBook);
 console.log("Total no of contacts : "+noOfContacts);
 
-addContact("Ronit","Kumar","Raghopur Chaturang","Bihar","India",844508,9334432387,"rohit@Yahoo.com");
+addContact("Ronit","Kumar","Raghopur Chaturang","Bihar","India",844508,9334432387,"ronit@Yahoo.com");
 
 noOfContacts = getNoOfContacts(addressBook);
 console.log("Total no of contacts : "+noOfContacts);
+
+let City = "Bihar";
+let name = "Sagar";
+let isPersonPresent = searchContactInCity(City,name,addressBook);
+if(isPersonPresent==true)
+console.log("The person "+name+" is found in the city "+City);
+else
+console.log("The person "+name+" is not found in the city "+City);
