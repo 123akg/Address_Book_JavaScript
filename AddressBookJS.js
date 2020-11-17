@@ -157,11 +157,25 @@ function editContact(...params){
     addressBook[index] = newContact;
 }
 
+function deleteContact(...params){
+    firstname = params[0];
+    lastname = params[1]; 
+    let index = addressBook.findIndex(x=>x.firstName == firstname && x.lastName == lastname);
+    // delete addressBook[index];
+    addressBook.splice(index,1);
+}
+
 addContact("Abhi","Kumar","Raghopur Chaturang","Bihar","New York",844508,9368832387,"abhi@Yahoo.com");
 addContact("Amit","Kumar","Raghopur Chaturang","Bihar","New York",844508,9367832387,"amit@Yahoo.com");
 addContact("Sagar","Kumar","Raghopur Chaturang","Bihar","New York",844508,9398432387,"sagar@Yahoo.com");
 addContact("Ani","Kumar","Raghopur Chaturang","Bihar","New York",844508,9366762387,"ani@Yahoo.com");
 addContact("Rohit","Kumar","Raghopur Chaturang","Bihar","New York",844508,9334432387,"rohit@Yahoo.com");
 
-editContact("Rohit","Kumar","Bidupur","Bihar","New York",844508,9334432387,"rohit@Yahoo.com");
-console.log(addressBook.toString())
+
+editContact("Rohit","Kumar","Bidupur","Bihar","New York",844508,9334432387,"rohit@Yahoo.com")
+console.log(addressBook.toString());
+console.log(addressBook.length);
+
+deleteContact("Rohit","Kumar");
+console.log(addressBook.toString());
+console.log(addressBook.length);
