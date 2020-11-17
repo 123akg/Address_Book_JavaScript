@@ -135,11 +135,19 @@ class Contact{
 let addressBook = new Array();
 
 function addContact(...params) {
-    try{
-    let newContact = new Contact(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
-    addressBook.push(newContact);
-    }catch(e){
-        console.error(e);
+    firstname = params[0];
+    lastname = params[1]; 
+    let countOfPersons = addressBook.filter(x=>x.firstName == firstname && x.lastName == lastname).reduce((totalPeople,e)=>totalPeople+1,0);
+    if (countOfPersons==0){
+        try{
+        let newContact = new Contact(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
+        addressBook.push(newContact);
+        }catch(e){
+            console.error(e);
+        }
+    }
+    else{
+        console.log("The Contact with name already exists");
     }
     
 }
@@ -169,16 +177,23 @@ function getNoOfContacts(array){
     return count;
 }
 
-addContact("Abhi","Kumar","Raghopur Chaturang","Bihar","New York",844508,9368832387,"abhi@Yahoo.com");
-addContact("Amit","Kumar","Raghopur Chaturang","Bihar","New York",844508,9367832387,"amit@Yahoo.com");
-addContact("Sagar","Kumar","Raghopur Chaturang","Bihar","New York",844508,9398432387,"sagar@Yahoo.com");
-addContact("Ani","Kumar","Raghopur Chaturang","Bihar","New York",844508,9366762387,"ani@Yahoo.com");
-addContact("Rohit","Kumar","Raghopur Chaturang","Bihar","New York",844508,9334432387,"rohit@Yahoo.com");
+addContact("Abhi","Kumar","Raghopur Chaturang","Bihar","India",844508,9368832387,"abhi@Yahoo.com");
+addContact("Amit","Kumar","Raghopur Chaturang","Bihar","India",844508,9367832387,"amit@Yahoo.com");
+addContact("Sagar","Kumar","Raghopur Chaturang","Bihar","India",844508,9398432387,"sagar@Yahoo.com");
+addContact("Ani","Kumar","Raghopur Chaturang","Bihar","India",844508,9366762387,"ani@Yahoo.com");
+addContact("Rohit","Kumar","Raghopur Chaturang","Bihar","India",844508,9334432387,"rohit@Yahoo.com");
 
-editContact("Rohit","Kumar","Bidupur","Bihar","New York",844508,9334432387,"rohit@Yahoo.com");
+editContact("Rohit","Kumar","Bidupur","Bihar","India",844508,9334432387,"rohit@Yahoo.com");
+console.log(addressBook.toString());
+
 
 deleteContact("Rohit","Kumar");
 console.log(addressBook.toString());
 
 let noOfContacts = getNoOfContacts(addressBook);
+console.log("Total no of contacts : "+noOfContacts);
+
+addContact("Ronit","Kumar","Raghopur Chaturang","Bihar","India",844508,9334432387,"rohit@Yahoo.com");
+
+noOfContacts = getNoOfContacts(addressBook);
 console.log("Total no of contacts : "+noOfContacts);
